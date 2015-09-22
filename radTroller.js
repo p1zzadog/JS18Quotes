@@ -8,6 +8,10 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 	$scope.thanksMessage = false;
 	$scope.formButtonString = "Add a Quote!"
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// new quote submit
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 	$scope.showForm = function() {
 		$scope.formToggle = !$scope.formToggle;
 
@@ -16,13 +20,15 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 		}
 		else {
 			$scope.formButtonString = "Cancel"
+			$scope.newQuote = null;
+			$scope.newAuthor = null;
 		}
 	};
 
 	$scope.submitForm = function() {
 		var quoteEntry = {
-			quote: $scope.newQuote,
-			author: $scope.newAuthor
+			quote  : $scope.newQuote,
+			author : $scope.newAuthor
 			// Rating: 
 		}
 		$scope.quoteArray.push(quoteEntry)
@@ -36,5 +42,27 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 		}, 1000);
 		// console.log($scope.quoteArray)
 	}
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Existing Quote Edit
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+	$scope.editQuote = function(index) {
+		$scope.quoteArray[index].editValue = true;
+		console.log($scope.quoteArray[index])
+	};
+
+	$scope.submitEdit = function(index) {
+		$scope.quoteArray[index] = {
+			quote     : $scope.quoteEdit,
+			author    : $scope.authorEdit,
+			editValue : false
+		};
+		console.log($scope.quoteArray[index])
+	};
+
+	$scope.cancelEdit = function(index) {
+		$scope.quoteArray[index].editValue = false;
+	};
 
 }]);
