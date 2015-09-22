@@ -21,8 +21,8 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 
 	$scope.submitForm = function() {
 		var quoteEntry = {
-			Quote: $scope.newQuote,
-			Author: $scope.newAuthor
+			quote: $scope.newQuote,
+			author: $scope.newAuthor
 			// Rating: 
 		}
 		$scope.quoteArray.push(quoteEntry)
@@ -34,7 +34,7 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 		$timeout(function() {
 			$scope.thanksMessage = false;
 		}, 1000);
-		console.log($scope.quoteArray)
+		// console.log($scope.quoteArray)
 	}
 
 }]);

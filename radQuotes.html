@@ -13,7 +13,10 @@
 	<div class="body-container">
 		<div class="quotes-container">
 			<ul>
-				<li>Quote Example Author Example</li>
+				<li ng-repeat="quoteItem in quoteArray">
+					<div ng-bind="quoteItem.quote"></div>
+					<div ng-bind="quoteItem.author"></div>
+				</li>
 			</ul>
 		</div>
 		<button ng-click="showForm()" ng-bind="formButtonString" class="button"></button>
