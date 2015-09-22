@@ -1,0 +1,86 @@
+/************************************************************
+Global Stuff
+*************************************************************/
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 14px;
+}
+
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+/************************************************************
+Utility Classes
+*************************************************************/
+
+.button {
+	background-color:#48ed11;
+	color:white;
+	font-size:1.5rem;
+	border:none;
+	border-radius:0.5rem;
+}
+
+/************************************************************
+Header Classes
+*************************************************************/
+
+.banner {
+	background-color:#11B6ED;
+	color:white;
+	font-size:3rem;
+}
+
+.banner h1 {
+	margin:0;
+	padding:0;
+}
+
+/************************************************************
+Quotes Section Classes
+*************************************************************/
+
+.quotes-container {
+	background-color:#ED4811;
+	color:white;
+	font-size:1.5rem;
+}
+
+/************************************************************
+Form Classes
+*************************************************************/
+
+.form-container {
+	background-color:#B611ED;
+	color:white;
+}
+
+.form-container {
+	font-size:2rem;
+	padding:2rem;
+}
+
+.form-container textarea {
+	display:block;
+	color:black;
+	width:300px;
+	height:100px;
+	resize:none;
+}
+
+.form-container input {
+	display:block;
+	color:black;
+	width:300px;
+}

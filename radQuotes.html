@@ -9,7 +9,24 @@
 	<script type="text/javascript" src="angular.js"></script>
 </head>
 <body ng-controller="radTroller">
-
+	<header class="banner"><h1>Rad Quotes!</h1></header>
+	<div class="body-container">
+		<div class="quotes-container">
+			<ul>
+				<li>Quote Example Author Example</li>
+			</ul>
+		</div>
+		<button ng-click="showForm()" ng-bind="formButtonString" class="button"></button>
+		<div ng-show="thanksMessage" class="form-container">Thank-You!</div>
+		<div ng-show="formToggle" class="form-container">
+			<label>Quote: </label>
+			<textarea ng-model="newQuote"></textarea>
+			<label>Author: </label>
+			<input ng-model="newAuthor" type="textbox"></input>
+			<button ng-click="submitForm()" class="button">Submit Form</button>			
+		</div>
+	</div>	
 	<script type="text/javascript" src="radTroller.js"></script>
+	<script type="text/javascript" src="radFactory.js"></script>
 </body>
 </html>
