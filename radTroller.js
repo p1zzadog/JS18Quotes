@@ -53,11 +53,6 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 
 	$scope.submitEdit = function(index, event) {
 		event.stopPropagation();
-		// $scope.quoteArray[index].quote = $scope.quoteArray[index].quoteEdit;
-		// $scope.quoteArray[index].author = $scope.quoteArray[index].authorEdit;
-		// 	console.log($scope.quoteArray[index].quoteEdit, $scope.quoteArray[index].authorEdit);
-		// $scope.quoteArray[index].quoteEdit = null;
-		// $scope.quoteArray[index].authorEdit	=null;
 		$scope.quoteArray[index].editValue = false;
 	};
 
