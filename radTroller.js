@@ -49,15 +49,12 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 
 	$scope.editQuote = function(index) {
 		$scope.quoteArray[index].editValue = true;
-		console.log($scope.quoteArray[index])
 	};
 
 	$scope.submitEdit = function(index) {
-		$scope.quoteArray[index] = {
-			quote     : $scope.quoteEdit,
-			author    : $scope.authorEdit,
-			editValue : false
-		};
+		$scope.quoteArray[index].quote = $scope.quoteEdit;
+		$scope.quoteArray[index].author = $scope.authorEdit;
+		$scope.quoteArray[index].editValue = false;
 		console.log($scope.quoteArray[index])
 	};
 
