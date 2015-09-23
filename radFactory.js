@@ -6,7 +6,8 @@ angular.module('radApp').factory('radFactory', [function(radFactory){
 		this.quote = quote;
 		this.author = author;
 		this.rating = rating;
-		this.editValue = false;
+		this.ratingArray = [];
+		this.editValue = false;		
 		quoteArray.push(this);
 	};
 

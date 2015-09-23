@@ -90,6 +90,10 @@ Quotes Section Classes
 	font-size:1.5rem;
 }
 
+.quotes-container .author-button {
+	width:200px;
+}
+
 .quotes-container textarea {
 	display:block;
 	color:black;

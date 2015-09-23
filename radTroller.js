@@ -7,6 +7,43 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 	$scope.thanksMessage = false;
 	$scope.formButtonString = "Add a Quote!"
 
+	console.log($scope.quoteArray)
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Star Populate
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+	$scope.starPopulate = function() {
+		console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-')	
+		for (i=0; i<$scope.quoteArray.length; i++) {
+			
+			$scope.quoteArray[i].ratingArray = [];
+			
+			for (j=0; j<$scope.quoteArray[i].rating; j++) {
+
+				$scope.quoteArray[i].ratingArray.push(j);
+			};
+			console.log($scope.quoteArray[i].ratingArray)
+		};
+	};
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Quote Sort
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+	$scope.sortByRating = function() {
+
+		$scope.quoteArray.sort(function(a, b){
+			if (a.rating > b.rating) {
+				return -1;
+			}
+			if (a.rating < b.rating) {
+				return 1;
+			}
+			return 0;
+		});
+	}
+
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // new quote submit
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -38,10 +75,12 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 			$scope.formButtonString = "Add another Quote!"
 			$scope.thanksMessage = true;
 			$scope.requiredMessage = false;
+			$scope.sortByRating();
+			$scope.starPopulate();
 			$timeout(function() {
 				$scope.thanksMessage = false;
 			}, 2000);
-				// console.log($scope.quoteArray)
+				console.log($scope.quoteArray)
 		}
 	}
 
@@ -65,7 +104,15 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 		}
 		else {
 			$scope.quoteArray[index].editValue = false;
+			$scope.sortByRating();
+			$scope.starPopulate();
+			$scope.quoteArray[index].ratingArray = []
+
+			// for (i=0; i<$scope.quoteArray[index].rating; i++) {
+			// $scope.quoteArray[index].ratingArray.push(i)
+			// }
 		}
+
 	};
 
 	$scope.cancelEdit = function(index, event) {
@@ -79,6 +126,7 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 		if (event.which === 13) {
     		$scope.submitEdit(index, event);
     		event.preventDefault();
+    		$scope.sortByRating();
 		};
 	};
 
