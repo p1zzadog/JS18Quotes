@@ -21,21 +21,28 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 			$scope.formButtonString = "Cancel"
 			$scope.newQuote = null;
 			$scope.newAuthor = null;
+			$scope.requiredMessage = false;
 		}
 	};
 
 	$scope.submitForm = function() {
-		new radFactory.Quote($scope.newQuote, $scope.newAuthor);
-			console.log($scope.newQuote, $scope.newAuthor);
-		$scope.newQuote = null;
-		$scope.newAuthor = null;
-		$scope.formToggle = !$scope.formToggle;
-		$scope.formButtonString = "Add another Quote!"
-		$scope.thanksMessage = true;
-		$timeout(function() {
-			$scope.thanksMessage = false;
-		}, 1000);
-		// console.log($scope.quoteArray)
+		if ( $scope.newQuote === null || $scope.newAuthor=== null) {
+			$scope.requiredMessage = true;
+		}
+		else {
+			new radFactory.Quote($scope.newQuote, $scope.newAuthor);
+				console.log($scope.newQuote, $scope.newAuthor);
+			$scope.newQuote = null;
+			$scope.newAuthor = null;
+			$scope.formToggle = !$scope.formToggle;
+			$scope.formButtonString = "Add another Quote!"
+			$scope.thanksMessage = true;
+			$scope.requiredMessage = false;
+			$timeout(function() {
+				$scope.thanksMessage = false;
+			}, 2000);
+			// console.log($scope.quoteArray)
+		}
 	}
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -53,7 +60,12 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 
 	$scope.submitEdit = function(index, event) {
 		event.stopPropagation();
-		$scope.quoteArray[index].editValue = false;
+		if ($scope.quoteArray[index].quote === '' && $scope.quoteArray[index].author==='') {
+			$scope.quoteArray.splice(index, 1);
+		}
+		else {
+			$scope.quoteArray[index].editValue = false;
+		}
 	};
 
 	$scope.cancelEdit = function(index, event) {
@@ -62,5 +74,16 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 		$scope.quoteArray[index].quote  = tempQuoteStore;
 		$scope.quoteArray[index].author = tempAuthorStore;
 	};
+
+	$scope.submitEditKey = function(index, event) {
+		if (event.which === 13) {
+    		$scope.submitEdit(index, event);
+    		event.preventDefault();
+		};
+	};
+
+	$scope.deleteQuote = function(index, event) {
+		$scope.quoteArray.splice(index,1);
+	}
 
 }]);

@@ -10,6 +10,9 @@ html {
 	font-size: 14px;
 }
 
+body {
+/*	background-color: #48ed11;*/
+}
 
 ul {
 	margin: 0;
@@ -30,6 +33,7 @@ Utility Classes
 	font-size:1.5rem;
 	border:none;
 	border-radius:0.5rem;
+	margin: 0.5rem 0.5rem 0.5rem 0rem;
 }
 
 /************************************************************
@@ -40,12 +44,23 @@ Header Classes
 	background-color:#11B6ED;
 	color:white;
 	font-size:3rem;
+/*	border-bottom:5px solid #B611ED;*/
 }
 
 .banner h1 {
 	margin:0;
 	padding:0;
 }
+
+/************************************************************
+Body Section Classes
+*************************************************************/
+
+.body-container {
+/*	background-color: #B611ED;*/
+/*	text-align:center;*/
+}
+
 
 /************************************************************
 Quotes Section Classes
@@ -71,6 +86,12 @@ Quotes Section Classes
 	width:300px;
 }
 
+.quotes-container li {
+/*	border-top: 5px solid #11B6ED;*/
+	border-bottom:5px solid #11B6ED;
+	padding:1rem;
+}
+
 /************************************************************
 Form Classes
 *************************************************************/
@@ -79,7 +100,7 @@ Form Classes
 	background-color:#B611ED;
 	color:white;
 	font-size:2rem;
-	padding:2rem;
+	padding:1rem;
 }
 
 .form-container textarea {
@@ -100,4 +121,5 @@ Form Classes
 	background-color:#11B6ED;
 	color:white;
 	font-size:2rem;
+	padding:1rem;
 }

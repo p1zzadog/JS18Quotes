@@ -18,25 +18,29 @@
 					<div ng-show="!quoteItem.editValue" ng-bind="quoteItem.quote"></div>
 					<div ng-show="!quoteItem.editValue" ng-bind="quoteItem.author"></div>
 					<button ng-show="!quoteItem.editValue" ng-click="editQuote($index)" class="button">Edit Quote</button>
-					<div ng-show="quoteItem.editValue">
+					<div ng-show="quoteItem.editValue" ng-keypress="submitEditKey($index, $event)">
 						<label>Quote: </label>
 						<textarea ng-model="quoteItem.quote"></textarea>
 						<label>Author: </label>
 						<input ng-model="quoteItem.author" type="textbox"/>
-						<button ng-click="submitEdit($index, $event)" class="button">Submit Form</button>	
-						<button ng-click="cancelEdit($index, $event)" class="button">Cancel</button>	
+						<button ng-click="submitEdit($index, $event)" class="button">Submit Edit</button>	
+						<button ng-click="cancelEdit($index, $event)" class="button">Cancel</button>
+						<button ng-click="deleteQuote($index, $event)" class="button">Delete</button>
 					</div>
 				</li>
 			</ul>
 		</div>
-		<button ng-click="showForm()" ng-bind="formButtonString" class="button"></button>
 		<div ng-show="thanksMessage" class="thanks-message">Thank-You!</div>
-		<div ng-show="formToggle" class="form-container">
-			<label>Quote: </label>
-			<textarea ng-model="newQuote"></textarea>
-			<label>Author: </label>
-			<input ng-model="newAuthor" type="textbox"/>
-			<button ng-click="submitForm()" class="button">Submit Form</button>			
+		<div class="form-container">
+			<button ng-click="showForm()" ng-bind="formButtonString" class="button"></button>	
+			<div ng-show="formToggle" class="form-container">
+				<label>Quote: </label>
+				<textarea ng-model="newQuote" required></textarea>
+				<label>Author: </label>
+				<input ng-model="newAuthor" type="textbox" required/>
+				<div ng-show="requiredMessage">Please include Quote and Author</div>
+				<button ng-click="submitForm()" class="button">Submit Form</button>			
+			</div>
 		</div>
 	</div>	
 	<script type="text/javascript" src="radTroller.js"></script>
