@@ -78,9 +78,6 @@ Form Classes
 .form-container {
 	background-color:#B611ED;
 	color:white;
-}
-
-.form-container {
 	font-size:2rem;
 	padding:2rem;
 }
@@ -97,4 +94,10 @@ Form Classes
 	display:block;
 	color:black;
 	width:300px;
+}
+
+.thanks-message {
+	background-color:#11B6ED;
+	color:white;
+	font-size:2rem;
 }

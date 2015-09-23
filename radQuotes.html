@@ -7,28 +7,30 @@
 	<link rel="stylesheet" type="text/css" href="normalize.css">
 	<link rel="stylesheet" type="text/css" href="radStyle.css">
 	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-animate.js"></script>
 </head>
 <body ng-controller="radTroller">
 	<header class="banner"><h1>Rad Quotes!</h1></header>
 	<div class="body-container">
 		<div class="quotes-container">
 			<ul>
-				<li ng-repeat="quoteItem in quoteArray" ng-click="editQuote($index)">
+				<li ng-repeat="quoteItem in quoteArray">
 					<div ng-show="!quoteItem.editValue" ng-bind="quoteItem.quote"></div>
 					<div ng-show="!quoteItem.editValue" ng-bind="quoteItem.author"></div>
+					<button ng-show="!quoteItem.editValue" ng-click="editQuote($index)" class="button">Edit Quote</button>
 					<div ng-show="quoteItem.editValue">
 						<label>Quote: </label>
-						<textarea ng-bind="quoteItem.quote" ng-model="quoteEdit"></textarea>
+						<textarea ng-model="quoteItem.quote"></textarea>
 						<label>Author: </label>
-						<input ng-value="quoteItem.author" ng-model="authorEdit" type="textbox"/>
-						<button ng-click="submitEdit($index)" class="button">Submit Form</button>	
-						<button ng-click="cancelEdit($index)" class="button">Cancel</button>	
+						<input ng-model="quoteItem.author" type="textbox"/>
+						<button ng-click="submitEdit($index, $event)" class="button">Submit Form</button>	
+						<button ng-click="cancelEdit($index, $event)" class="button">Cancel</button>	
 					</div>
 				</li>
 			</ul>
 		</div>
 		<button ng-click="showForm()" ng-bind="formButtonString" class="button"></button>
-		<div ng-show="thanksMessage" class="form-container">Thank-You!</div>
+		<div ng-show="thanksMessage" class="thanks-message">Thank-You!</div>
 		<div ng-show="formToggle" class="form-container">
 			<label>Quote: </label>
 			<textarea ng-model="newQuote"></textarea>
