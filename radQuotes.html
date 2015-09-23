@@ -10,23 +10,39 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-animate.js"></script>
 </head>
 <body ng-controller="radTroller">
-	<header class="banner"><h1>Rad Quotes!</h1></header>
+	<header class="banner">
+		<h1>Rad Quotes!</h1>
+		<hr/>
+		<label>Search!</label><input name="Search" ng-model="searchText"/><button ng-click="searchClear()" class="button">X</button>
+	</header>
+	
 	<div class="body-container">
 		<div class="quotes-container">
+		
 			<ul>
-				<li ng-repeat="quoteItem in quoteArray">
+				<li ng-repeat="quoteItem in quoteArray | filter:searchText">
 					<div ng-show="!quoteItem.editValue" ng-bind="quoteItem.quote"></div>
-					<div ng-show="!quoteItem.editValue" ng-bind="quoteItem.author"></div>
+					<div ng-show="!quoteItem.editValue" ng-bind="quoteItem.author" ng-click="filterAuthor($index)"></div>
+					<div ng-show="!quoteItem.editValue">{{quoteItem.rating}}/5 Stars!</div>
 					<button ng-show="!quoteItem.editValue" ng-click="editQuote($index)" class="button">Edit Quote</button>
 					<div ng-show="quoteItem.editValue" ng-keypress="submitEditKey($index, $event)">
 						<label>Quote: </label>
 						<textarea ng-model="quoteItem.quote"></textarea>
 						<label>Author: </label>
 						<input ng-model="quoteItem.author" type="textbox"/>
+						<label>Rating: </label>
+						<div class="rating-container">
+							<label><input type='radio' name="rating" ng-value="1" ng-model="quoteItem.rating">1</label>
+							<label><input type='radio' name="rating" ng-value="2" ng-model="quoteItem.rating">2</label>
+							<label><input type='radio' name="rating" ng-value="3" ng-model="quoteItem.rating">3</label>
+							<label><input type='radio' name="rating" ng-value="4" ng-model="quoteItem.rating">4</label>
+							<label><input type='radio' name="rating" ng-value="5" ng-model="quoteItem.rating">5</label>
+						</div>
 						<button ng-click="submitEdit($index, $event)" class="button">Submit Edit</button>	
 						<button ng-click="cancelEdit($index, $event)" class="button">Cancel</button>
 						<button ng-click="deleteQuote($index, $event)" class="button">Delete</button>
 					</div>
+					<hr/>
 				</li>
 			</ul>
 		</div>
@@ -35,11 +51,19 @@
 			<button ng-click="showForm()" ng-bind="formButtonString" class="button"></button>	
 			<div ng-show="formToggle" class="form-container">
 				<label>Quote: </label>
-				<textarea ng-model="newQuote" required></textarea>
+				<textarea ng-model="newQuote"></textarea>
 				<label>Author: </label>
-				<input ng-model="newAuthor" type="textbox" required/>
+				<input ng-model="newAuthor" type="textbox"/>
+				<label>Rating: </label>
+				<div class="rating-container">
+					<label><input type='radio' name="rating" ng-value="1" ng-model="newRating">1</label>
+					<label><input type='radio' name="rating" ng-value="2" ng-model="newRating">2</label>
+					<label><input type='radio' name="rating" ng-value="3" ng-model="newRating">3</label>
+					<label><input type='radio' name="rating" ng-value="4" ng-model="newRating">4</label>
+					<label><input type='radio' name="rating" ng-value="5" ng-model="newRating">5</label>
+				</div>	
 				<div ng-show="requiredMessage">Please include Quote and Author</div>
-				<button ng-click="submitForm()" class="button">Submit Form</button>			
+				<button ng-click="submitForm()" class="button">Submit Form</button>	
 			</div>
 		</div>
 	</div>	

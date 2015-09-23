@@ -30,8 +30,8 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 			$scope.requiredMessage = true;
 		}
 		else {
-			new radFactory.Quote($scope.newQuote, $scope.newAuthor);
-				console.log($scope.newQuote, $scope.newAuthor);
+			new radFactory.Quote($scope.newQuote, $scope.newAuthor, $scope.newRating);
+				// console.log($scope.newQuote, $scope.newAuthor);
 			$scope.newQuote = null;
 			$scope.newAuthor = null;
 			$scope.formToggle = !$scope.formToggle;
@@ -41,7 +41,7 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 			$timeout(function() {
 				$scope.thanksMessage = false;
 			}, 2000);
-			// console.log($scope.quoteArray)
+				// console.log($scope.quoteArray)
 		}
 	}
 
@@ -86,4 +86,17 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 		$scope.quoteArray.splice(index,1);
 	}
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Filtering
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+	$scope.filterAuthor = function(index) {
+		$scope.searchText = $scope.quoteArray[index].author;
+	}
+
+	$scope.searchClear = function() {
+		$scope.searchText = '';
+	}
+
 }]);
+

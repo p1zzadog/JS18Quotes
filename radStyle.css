@@ -44,12 +44,30 @@ Header Classes
 	background-color:#11B6ED;
 	color:white;
 	font-size:3rem;
+	padding:1rem 1rem 0rem	1rem;
 /*	border-bottom:5px solid #B611ED;*/
 }
 
 .banner h1 {
 	margin:0;
 	padding:0;
+}
+
+.banner hr {
+	height:5px;
+	background-color:#ED4811;
+	margin:0;
+
+}
+
+.banner label {
+	font-size:1.5rem;
+	margin-right:1rem;
+}
+
+.banner input {
+	font-size:1.5rem;
+	color:black;
 }
 
 /************************************************************
@@ -88,8 +106,13 @@ Quotes Section Classes
 
 .quotes-container li {
 /*	border-top: 5px solid #11B6ED;*/
-	border-bottom:5px solid #11B6ED;
+	/*border-bottom:5px solid #11B6ED;*/
 	padding:1rem;
+}
+
+.quotes-container hr {
+	background-color: #11B6ED;
+	height:5px;
 }
 
 /************************************************************
@@ -122,4 +145,9 @@ Form Classes
 	color:white;
 	font-size:2rem;
 	padding:1rem;
+}
+
+.rating-container label{
+	display:inline-block;
+	width:1rem;
 }
