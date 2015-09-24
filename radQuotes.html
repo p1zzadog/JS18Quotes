@@ -12,12 +12,23 @@
 <body ng-controller="radTroller">
 	<header class="banner">
 		<h1>Rad Quotes!</h1>
+		
 		<hr/>
-		<label>Search!</label><input name="Search" ng-model="searchText"/><button ng-click="searchClear()" class="button">X</button>
+		<button ng-click="randomQuoteLightbox()" class="random-quote button">Random Quote!</button>
+		<div class="searchbar"><label>Search!</label><input name="Search" ng-model="searchText"/><button ng-click="searchClear()" class="button">X</button></div>
 	</header>
 	
 	<div ng-init="sortByRating()" class="body-container">
 		<div class="quotes-container">
+			
+			<div ng-show="randomQuoteDisplay" class="lightbox ng-cloak">
+				<div class="ib-lb inner-box">
+					<p ng-bind="randomQuote"></p>
+					<p ng-bind="randomAuthor"></p>
+					<p><span ng-repeat="stars in quoteArray[randomQuoteIndex].ratingArray">&#x26C4</span></p>
+					<button ng-click="closeRandomQuoteLightbox()"class="button">Close</button>
+				</div>
+			</div>
 		
 			<ul>
 				<li ng-repeat="quoteItem in quoteArray | filter:searchText">

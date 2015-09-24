@@ -132,5 +132,23 @@ $scope.starPopulate = function(index) {
 		$scope.searchText = '';
 	}
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Random Quote
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+	$scope.randomQuoteDisplay = false;
+
+	$scope.randomQuoteLightbox = function() {
+		$scope.randomQuoteIndex =Math.floor(Math.random()*$scope.quoteArray.length);
+		$scope.randomQuote = $scope.quoteArray[$scope.randomQuoteIndex].quote;
+		$scope.randomAuthor = $scope.quoteArray[$scope.randomQuoteIndex].author;
+
+		$scope.randomQuoteDisplay = true;
+	}
+
+	$scope.closeRandomQuoteLightbox = function() {
+		$scope.randomQuoteDisplay = false;
+	}
+
 }]);
 
