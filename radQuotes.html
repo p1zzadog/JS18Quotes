@@ -29,7 +29,6 @@
 					<button ng-click="closeRandomQuoteLightbox()"class="button">Close</button>
 				</div>
 			</div>
-		
 			<ul>
 				<li ng-repeat="quoteItem in quoteArray | filter:searchText">
 					<div ng-show="!quoteItem.editValue" ng-bind="quoteItem.quote"></div>
@@ -56,6 +55,7 @@
 					<hr/>
 				</li>
 			</ul>
+			<button ng-show="undoDeleteButton" ng-click="undoDelete()" class="button">Undo Delete</button>
 		</div>
 		<div ng-show="thanksMessage" class="thanks-message">SWEET Dude!</div>
 		<div class="form-container">

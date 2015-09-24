@@ -91,7 +91,9 @@ $scope.starPopulate = function(index) {
 	$scope.submitEdit = function(index, event) {
 		event.stopPropagation();
 		if ($scope.quoteArray[index].quote === '' && $scope.quoteArray[index].author==='') {
+			tempDeleteArray.push($scope.quoteArray(index));
 			$scope.quoteArray.splice(index, 1);
+			$scope.undoDeleteButton = true
 		}
 		else {
 			$scope.quoteArray[index].editValue = false;
@@ -115,9 +117,27 @@ $scope.starPopulate = function(index) {
     		$scope.sortByRating();
 		};
 	};
-
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Undo Delete
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+	
+	var tempDeleteArray = [];
 	$scope.deleteQuote = function(index, event) {
+		$scope.quoteArray[index].editValue = false;
+		tempDeleteArray.push($scope.quoteArray[index]);
 		$scope.quoteArray.splice(index,1);
+		$scope.undoDeleteButton = true
+	}
+
+	$scope.undoDelete = function() {
+		if (tempDeleteArray.length>0) {
+			$scope.quoteArray.push(tempDeleteArray.pop());
+			$scope.sortByRating();
+		}
+		else {
+			$scope.undoDeleteButton = false;
+		}
+
 	}
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -142,7 +162,6 @@ $scope.starPopulate = function(index) {
 		$scope.randomQuoteIndex =Math.floor(Math.random()*$scope.quoteArray.length);
 		$scope.randomQuote = $scope.quoteArray[$scope.randomQuoteIndex].quote;
 		$scope.randomAuthor = $scope.quoteArray[$scope.randomQuoteIndex].author;
-
 		$scope.randomQuoteDisplay = true;
 	}
 
