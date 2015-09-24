@@ -7,25 +7,17 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 	$scope.thanksMessage = false;
 	$scope.formButtonString = "Add a Quote!"
 
-	console.log($scope.quoteArray)
-
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Star Populate
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-	$scope.starPopulate = function() {
-		console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-')	
-		for (i=0; i<$scope.quoteArray.length; i++) {
-			
-			$scope.quoteArray[i].ratingArray = [];
-			
-			for (j=0; j<$scope.quoteArray[i].rating; j++) {
+$scope.starPopulate = function(index) {
 
-				$scope.quoteArray[i].ratingArray.push(j);
-			};
-			console.log($scope.quoteArray[i].ratingArray)
-		};
-	};
+	$scope.quoteArray[index].ratingArray = [];
+	for (var i = 0; i<$scope.quoteArray[index].rating; i++) {
+		$scope.quoteArray[index].ratingArray.push(i);
+	}
+}
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Quote Sort
@@ -76,7 +68,6 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 			$scope.thanksMessage = true;
 			$scope.requiredMessage = false;
 			$scope.sortByRating();
-			$scope.starPopulate();
 			$timeout(function() {
 				$scope.thanksMessage = false;
 			}, 2000);
@@ -104,13 +95,8 @@ angular.module('radApp').controller('radTroller',  ['$scope', '$timeout', 'radFa
 		}
 		else {
 			$scope.quoteArray[index].editValue = false;
+			$scope.starPopulate(index);
 			$scope.sortByRating();
-			$scope.starPopulate();
-			$scope.quoteArray[index].ratingArray = []
-
-			// for (i=0; i<$scope.quoteArray[index].rating; i++) {
-			// $scope.quoteArray[index].ratingArray.push(i)
-			// }
 		}
 
 	};

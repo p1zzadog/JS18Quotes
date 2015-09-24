@@ -8,6 +8,11 @@ angular.module('radApp').factory('radFactory', [function(radFactory){
 		this.rating = rating;
 		this.ratingArray = [];
 		this.editValue = false;		
+		
+		for (var i=0; i<rating; i++) {
+			this.ratingArray.push(i);
+		}
+
 		quoteArray.push(this);
 	};
 
